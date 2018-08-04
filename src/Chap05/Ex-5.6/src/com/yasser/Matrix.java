@@ -6,35 +6,19 @@ public class Matrix {
     private Link start;
 
     public Matrix(int row, int col) {
-        Link[] linkArray = new Link[row];
+        Link[][] matrix = new Link[row][col];
         for (int i = 0; i < row; i++) {
-            linkArray[i] = createLinkRowOfLength(col);
-        }
-
-        start = linkArray[0];
-
-        while (linkArray[0] != null) {
-            for (int i = 0; i < linkArray.length; i++) {
-                if (i == 0) continue;
-                linkArray[i - 1].down = linkArray[i];
-            }
-
-            for (int i = 0; i < linkArray.length; i++) {
-                linkArray[i] = linkArray[i].left;
+            for (int j = 0; j < col; j++) {
+                matrix[i][j] = new Link(0);
+                if (i != 0) {
+                    matrix[i - 1][j].down = matrix[i][j];
+                }
+                if (j != 0) {
+                    matrix[i][j - 1].left = matrix[i][j];
+                }
             }
         }
-    }
-
-    private Link createLinkRowOfLength(int col) {
-        Link current = null;
-        for (int i = 0; i < col; i++) {
-            Link link = new Link(0);
-            if (i != 0)
-                link.left = current;
-            current = link;
-
-        }
-        return current;
+        start = matrix[0][0];
     }
 
     public void display() {
