@@ -11,7 +11,7 @@ public class DoublyLinkedList {
     }
 
     public boolean isEmpty() {
-        return first == null;
+        return first == null && last == null;
     }
 
     public void insertFirst(int value) {
@@ -60,7 +60,11 @@ public class DoublyLinkedList {
         if (isEmpty()) throw new Exception("List empty");
         int value = first.value;
         first = first.next;
-        first.prev = null;
+        if (first == null) {
+            last = null;
+        } else {
+            first.prev = null;
+        }
         return value;
     }
 
@@ -68,7 +72,11 @@ public class DoublyLinkedList {
         if (isEmpty()) throw new Exception("List empty");
         int value = last.value;
         last = last.prev;
-        last.next = null;
+        if (last == null) {
+            first = null;
+        } else {
+            last.next = null;
+        }
         return value;
     }
 
