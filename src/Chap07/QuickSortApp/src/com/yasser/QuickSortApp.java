@@ -16,7 +16,7 @@ public class QuickSortApp {
         display(sort(new int[]{8, 75, 89, 86, 139, 66, 87, 109, 57, 163}));
     }
 
-    private static void replace(int[] arr, int i, int j) {
+    private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -34,9 +34,9 @@ public class QuickSortApp {
                 hi--;
             }
             if (lo >= hi) break;
-            replace(arr, lo, hi);
+            swap(arr, lo, hi);
         }
-        replace(arr, lo, end);
+        swap(arr, lo, end);
         return lo;
     }
 
