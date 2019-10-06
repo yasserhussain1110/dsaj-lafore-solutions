@@ -2,7 +2,7 @@ package com.yasser;
 
 import static java.lang.System.out;
 
-public class QuickSortApp {
+public class QuickSortAppRightPivot {
     public static void main(String[] args) {
         display(sort(new int[]{3, 4}));
         display(sort(new int[]{4, 3}));
@@ -27,12 +27,8 @@ public class QuickSortApp {
         int hi = end - 1;
         int pivot = arr[end];
         while (true) {
-            while (arr[lo] < pivot) {
-                lo++;
-            }
-            while (hi > lo && arr[hi] > pivot) {
-                hi--;
-            }
+            for (; arr[lo] < pivot; lo++);
+            for (; hi > lo && arr[hi] > pivot; hi--);
             if (lo >= hi) break;
             swap(arr, lo, hi);
         }
