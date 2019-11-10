@@ -27,7 +27,13 @@ public class BinaryTreeApp {
 
     private static void deleteDemo() {
         BinaryTree bTree = getBasicBinaryTree();
+        bTree.display();
+        bTree.delete(50);
+        bTree.display();
+        bTree.delete(201);
+        bTree.display();
         bTree.delete(126);
+        bTree.display();
         bTree.delete(30);
         bTree.display();
         bTree.delete(12);

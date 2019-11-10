@@ -1,8 +1,8 @@
 package com.yasser;
 
 import static com.yasser.Node.build;
-import static com.yasser.Node.findLargest;
 import static com.yasser.Node.findNodeWithParent;
+import static com.yasser.Node.findSmallestNodeWithParent;
 import static com.yasser.Node.flatten;
 import static com.yasser.Node.insertNode;
 import static com.yasser.Node.findNode;
@@ -44,9 +44,16 @@ public class BinaryTree {
         } else if (node.getRight() == null) {
             replaceChild(result, node.getLeft());
         } else {
-            Node nodeToAddTo = findLargest(node.getLeft());
-            nodeToAddTo.setRight(node.getRight());
-            replaceChild(result, node.getLeft());
+            Node rightSubTree = node.getRight();
+            FindWithParentResult toBeReplacedNodeResult = findSmallestNodeWithParent(rightSubTree);
+            Node parent = toBeReplacedNodeResult.getParent();
+            Node toBeReplaced = toBeReplacedNodeResult.getNode();
+            if (parent != null) {
+                parent.setLeft(toBeReplaced.getRight());
+                toBeReplaced.setRight(rightSubTree);
+            }
+            toBeReplaced.setLeft(node.getLeft());
+            replaceChild(result, toBeReplaced);
         }
     }
 

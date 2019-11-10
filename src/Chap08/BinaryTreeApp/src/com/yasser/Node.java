@@ -110,9 +110,13 @@ public class Node {
         return findNodeWithParent(currentNode, currentNode.getRight(), data, false);
     }
 
-    public static Node findLargest(@NotNull Node node) {
-        if (node.getRight() == null) return node;
-        return findLargest(node.getRight());
+    public static FindWithParentResult findSmallestNodeWithParent(@NotNull Node node) {
+        Node parentNode = null;
+        while(node.getLeft() != null) {
+            parentNode = node;
+            node = node.getLeft();
+        }
+        return new FindWithParentResult(parentNode, node, true);
     }
 
     @Override
